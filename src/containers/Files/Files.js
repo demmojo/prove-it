@@ -67,7 +67,7 @@ class Files extends Component {
                             d.setUTCSeconds(utcSeconds);
                             let item = {
                                 docHash: result[0],
-                                userName: this.state.web3.toAscii(result[1]),
+                                userName: this.state.web3.toUtf8(result[1]),
                                 docTimestamp: d.toLocaleString(),
                                 ipfsHash: this.state.web3.toAscii(result[3]),
                                 docTags: this.state.web3.toAscii(result[4])
@@ -103,13 +103,13 @@ class Files extends Component {
                                         <div className="tag token"><strong>User Name &emsp;&emsp;: </strong>{item.userName}</div>
                                     </Col>
                                     <Col xs="12" md="12">
-                                        <div className="tag token"><strong>Doc Timestamp: </strong> {item.docTimestamp}</div>
+                                        <div className="tag token"><strong>File Timestamp: </strong> {item.docTimestamp}</div>
                                     </Col>
                                     <Col xs="12" md="12">
-                                        <div className="tag token"><strong>Doc Hash &emsp;&emsp;&ensp;&nbsp;: </strong> {item.docHash}</div>
+                                        <div className="tag token"><strong>File Hash &emsp;&emsp;&ensp;&nbsp;: </strong> {item.docHash}</div>
                                     </Col>
                                     <Col xs="12" md="12">
-                                        <div className="tag token"><strong>Doc Tags &emsp;&emsp;&ensp;&ensp;: </strong> {item.docTags}</div>
+                                        <div className="tag token"><strong>File Tags &emsp;&emsp;&ensp;&ensp;: </strong> {item.docTags}</div>
                                     </Col>
                                     <Col xs="12" md="12">
                                         <div className="tag token"><strong>ipfs Hash &emsp;&emsp;&ensp;&ensp;: </strong> {item.ipfsHash}</div>
