@@ -86,7 +86,7 @@ contract ProveDatabase  is Mortal {
         * @param _docTags additional tags.
         * @return status true/false.
         */
-    function addFile(address caller, bytes32 _docHash, bytes32 _userName, bytes _ipfsHash,bytes _docTags) public returns(bool) {
+    function addFile(address caller, bytes32 _docHash, bytes32 _userName, bytes memory _ipfsHash, bytes memory _docTags) public returns(bool) {
         if(users[caller].documentDetails[_docHash].docHash == 0x0 ){
             users[caller].addr = msg.sender;
             users[caller].documentList.push(_docHash);
@@ -108,7 +108,7 @@ contract ProveDatabase  is Mortal {
     function getFile(address caller,bytes32 _docHash) 
     public 
     view 
-    returns(bytes32, bytes32, uint, bytes,bytes){
+    returns(bytes32, bytes32, uint, bytes memory, bytes memory){
         require(_docHash != 0x0, "File Hash is mandatory");
         File storage document = users[caller].documentDetails[_docHash];
         return(document.docHash,document.userName,document.docTimestamp,document.ipfsHash,document.docTags);
@@ -120,7 +120,7 @@ contract ProveDatabase  is Mortal {
     function retrieveAllFiles(address caller) 
     public 
     view 
-    returns(bytes32[]){
+    returns(bytes32[] memory){
         return users[caller].documentList;
     }
     
@@ -143,7 +143,7 @@ contract ProveDatabase  is Mortal {
 
     // Fallback method to prevet calls to with data and unknown functions to the contract.
     // This function is invoked when a call is made to the contrat with no matching function signature. 
-    function () public payable {
+    function () external payable {
         require(msg.data.length == 0,"Message Length is not zero");
         emit LogFallback(msg.sender,msg.value);
     }
