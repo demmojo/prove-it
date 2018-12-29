@@ -1,0 +1,7 @@
+
+Latest smart contract addresses of the dapp are listed below. 
+
+Mortal: 0x465ccf4e99e37592a1ee3247c1f35e740dac31f7
+ProveDatabase: 0x308ece64d23a6bee11d49fc2a33d4ff2b60be322
+Prove: 0xc39376088619bff90d042c97b52925489d1beb22
+Register: 0x9980cc236b602709a50c2087e2b816b2f926a87b

@@ -1,0 +1,22 @@
+.carousel {
+    position: relative;
+  }
+
+.carousel-slide__content {
+  margin-bottom: 19px;
+  font-family: 'Times New Roman', 'Trebuchet MS', sans-serif;
+  font-size: 16px;
+}
+
+.carousel-caption h3 {
+    font-size:75px !important;
+    line-height:90px !important;
+    text-shadow: 5px 5px 55px rgb(31, 31, 31) !important;
+    -webkit-text-stroke: 1px rgb(24, 24, 24);
+}
+
+.carousel-caption p {
+  font-size:45px !important;
+  line-height:70px !important;
+  text-shadow: 0px 0px 10px rgb(7, 7, 7) !important;
+}
