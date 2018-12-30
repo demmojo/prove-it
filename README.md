@@ -42,15 +42,14 @@ Files uploaded are stored in IPFS. Do not upload sensitive personal information.
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
 
 ### Requirements
-
-What things you need to install the software and how to install them
+These are the dependencies:
 
 `nodejs` 
 `npm` 
 `Truffle` 
 `MetaMask` 
 `ganache-cli`
-`truffle-privatekey-provider` 
+`truffle-hdwallet-provider` 
 `Solidity`
 `git` 
 
