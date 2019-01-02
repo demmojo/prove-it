@@ -1,4 +1,4 @@
-pragma solidity ^0.4.22;
+pragma solidity ^0.4.24;
 
 import "./ProveDatabase.sol";
 import "./Mortal.sol";
@@ -39,7 +39,7 @@ contract Prove is Mortal{
         * @param _docTags document tags.
         * @return status true/false.
         */
-    function uploadFile(bytes32 _docHash, bytes32 _userName, bytes _ipfsHash,bytes _docTags) public returns(bool) {
+    function uploadFile(bytes32 _docHash, bytes32 _userName, bytes memory _ipfsHash,bytes memory _docTags) public returns(bool) {
         
         require(_docHash != 0x0,"Please enter a correct document hash.");
         require(_userName.length <= 32,"The userName should be less than 32 bytes");
@@ -64,7 +64,7 @@ contract Prove is Mortal{
         * @return ipfsHash IPFS document hash.
         * @return docTags document description tags.
         */
-    function retrieveFile(bytes32 _docHash) public view returns(bytes32,bytes32,uint,bytes,bytes) {
+    function retrieveFile(bytes32 _docHash) public view returns(bytes32,bytes32,uint,bytes memory,bytes memory) {
         
         require(_docHash != 0x0, "Please enter a correct document hash.");
         ProveDatabase proveDatabase = ProveDatabase(storageDatabase);
@@ -80,7 +80,7 @@ contract Prove is Mortal{
     /** @dev Returns every document owned by the sender. 
         * @return documentHashList list of document hashes.
         */
-    function retrieveAllFiles() public view returns(bytes32[]){
+    function retrieveAllFiles() public view returns(bytes32[] memory){
         ProveDatabase proveDatabase = ProveDatabase(storageDatabase);
         bytes32[] memory documentHashList = proveDatabase.retrieveAllFiles(msg.sender);
         return documentHashList;
@@ -104,7 +104,7 @@ contract Prove is Mortal{
 
     // Fallback function to prevent calls with unknown data and functions. 
     // It is invoked when the call made to the contract does not match any function signatures.
-    function () public payable {
+    function () external payable {
         require(msg.data.length == 0,"Length of the message is not zero.");
         emit LogFallback(msg.sender,msg.value);
     }
