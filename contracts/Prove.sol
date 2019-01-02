@@ -42,9 +42,9 @@ contract Prove is Mortal{
     function uploadFile(bytes32 _docHash, bytes32 _userName, bytes memory _ipfsHash,bytes memory _docTags) public returns(bool) {
         
         require(_docHash != 0x0,"Please enter a correct document hash.");
-        require(_userName.length <= 32,"The userName should be less than 32 bytes");
+        require(_userName.length <= 64,"The userName should be less than 64 bytes");
         require(_ipfsHash.length <= 64,"The ipfsHash should be less than 64 bytes");
-        require(_docTags.length <= 32,"The docTags should be less than 32 bytes");
+        require(_docTags.length <= 64,"The docTags should be less than 64 bytes");
         
         bool status;
         ProveDatabase proveDatabase = ProveDatabase(storageDatabase);
