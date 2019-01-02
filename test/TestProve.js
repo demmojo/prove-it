@@ -10,13 +10,14 @@ contract('Prove contract test suite', function (accounts) {
     // the default value for docHashs is 0x0
     it('Test: File retrieve on Empty Contract', function () {
 
-        let docHash = "0xf50aab0582350e332b469f450e38f45e77f0926dfe07cf56ee661707207a5419";
+        let docHash = "0xf50aab0582320e332b469f450e38f45e77f0926dfe07cf56ee661707207a5419";
         const account_one = accounts[0];
         return Prove.deployed().then(function (instance) {
             return instance.retrieveFile.call(docHash, { from: account_one });
         }).then(function (result) {
             let expected = 0x0;
             let actual = result[0];
+            console.log("actual0000000000000", actual);
             assert.equal(actual, expected, 'None if the file not exist in blockchain. Default value for bytes32 should be returned 0x0');
         })
     });

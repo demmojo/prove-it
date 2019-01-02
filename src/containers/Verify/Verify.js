@@ -175,7 +175,7 @@ class Verify extends Component {
                     return this.setState({
                         contractResponse: {
                             hash: result[0],
-                            name: this.state.web3.toAscii(result[1]),
+                            name: this.state.web3.toUtf8(result[1]),
                             timestamp: d.toLocaleString(),
                             ipfsHash: this.state.web3.toAscii(result[3]),
                             docTags: this.state.web3.toAscii(result[4]),

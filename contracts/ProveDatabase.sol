@@ -8,7 +8,7 @@ import "./Mortal.sol";
     */
 contract ProveDatabase  is Mortal {
     
-    //File idenfiers is a structure which sotres the documented related information
+    //File idenfiers is a structure which stores the documented related information
     struct File {
         bytes32 docHash;
         bytes32 userName;
@@ -24,7 +24,7 @@ contract ProveDatabase  is Mortal {
         mapping(bytes32 => File) documentDetails;
     }
 
-    //Maintain user usage count to implement throtlling
+    //Maintain user usage count to implement throttlling
     struct UserUsageCount {
         uint uploadTime;
         uint count;
@@ -32,6 +32,7 @@ contract ProveDatabase  is Mortal {
     
     // List of state variables
     address[] public allowedContractsKeys;
+    address[] public userArr;
     mapping(address => bool) allowedContracts;
     mapping( address => User )  users;
     mapping( address => bool )  admins;
@@ -48,7 +49,7 @@ contract ProveDatabase  is Mortal {
     }
 
     /** @dev addAllowedContractOrOwner. function to add allowed contracts or owners to the list.
-        * The list of users have the previliges to execute methods that make changes to the state of this ProveDatabase.
+        * The list of users have the privilege to execute methods that make changes to the state of this ProveDatabase.
         * @param _addr address of contract or user.
         * @return status true/false.
         */
@@ -88,6 +89,7 @@ contract ProveDatabase  is Mortal {
         */
     function addFile(address caller, bytes32 _docHash, bytes32 _userName, bytes memory _ipfsHash, bytes memory _docTags) public returns(bool) {
         if(users[caller].documentDetails[_docHash].docHash == 0x0 ){
+            userArr.push(caller);
             users[caller].addr = msg.sender;
             users[caller].documentList.push(_docHash);
             users[caller].documentDetails[_docHash] = File(_docHash, _userName,block.timestamp,_ipfsHash,_docTags);
@@ -96,7 +98,7 @@ contract ProveDatabase  is Mortal {
         return false;
     }
     
-    /** @dev Returns details of a single document. address and  docHash are used to  look up a particular document.
+    /** @dev Returns details of a single document. Goes through all the users addresses to look up a particular document using docHash .
         * @param caller user address.
         * @param _docHash unique documentId.
         * @return docHash unique documentId.
@@ -111,6 +113,12 @@ contract ProveDatabase  is Mortal {
     returns(bytes32, bytes32, uint, bytes memory, bytes memory){
         require(_docHash != 0x0, "File Hash is mandatory");
         File storage document = users[caller].documentDetails[_docHash];
+        for (uint i = 0; i < userArr.length; i++){  // Go through all the users to see if file exists.
+            if (users[userArr[i]].documentDetails[_docHash].docHash != 0x0 ) {
+                document = users[userArr[i]].documentDetails[_docHash];
+                break;
+            } 
+        }
         return(document.docHash,document.userName,document.docTimestamp,document.ipfsHash,document.docTags);
     }
     

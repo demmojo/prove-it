@@ -59,7 +59,7 @@ contract('ProveDatabase contract test suit', function (accounts) {
     it('Test add document', function () {
         const caller = accounts[1];
         const docHash = "0x6550e5e1486f087856ca7d646c17f74d91df14641f34733ae4f12941d7fc89c2";
-        const userName = "Santu";
+        const userName = "demmojo";
         const ipfsHash = "ipfshashsdocument1";
         const owner = accounts[0];
         return ProveDatabase.deployed().then((instance) => {
@@ -80,7 +80,7 @@ contract('ProveDatabase contract test suit', function (accounts) {
             const caller = accounts[1];
             const docHash1 = "0x6550e5e1486f087856ca7d646c17f74d91df14641f34733ae4f12941d7fc89d3";
             const docHash2 = "0x6550e5e1486f087856ca7d646c17f74d91df14641f34733ae4f12941d7fc89d4";
-            const userName = "Santu";
+            const userName = "demmojo";
             const ipfsHash = "ipfshashsdocument1";
             const owner = accounts[0];
             return ProveDatabase.deployed().then((instance) => {
