@@ -37,7 +37,7 @@ const UploadForm = (props) => {
               </Col>
               <Col xs="12" md="9">
                 <Input type="text" id="exampleInputName2" maxLength="32" placeholder="James Bond" name="name" onChange={(event) => props.handleChange(event)} required />
-                <FormText className="help-block">Please enter your name (max length is 32 chars)</FormText>
+                <FormText className="help-block">Please enter your name (max length is 64 chars)</FormText>
               </Col>
             </FormGroup>
             <FormGroup row>
@@ -46,7 +46,7 @@ const UploadForm = (props) => {
               </Col>
               <Col xs="12" md="9">
                 <Input type="text" id="exampleInputName3" maxLength="32" placeholder="Photo, Spain, Secret Facility" name="docTags" onChange={(event) => props.handleChange(event)} required />
-                <FormText className="help-block">Please enter document tags (max length is 32 chars)</FormText>
+                <FormText className="help-block">Please enter document tags (max length is 64 chars)</FormText>
               </Col>
             </FormGroup>
             <FormGroup row>
